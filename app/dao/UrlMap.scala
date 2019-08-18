@@ -20,7 +20,7 @@ class UrlMap @Inject()(environmentService: EnvironmentService) {
 
   def upsertAndGetStatus(urlHash: Int, retries: Int): Boolean = {
     if (retryLimit < retries) {
-      throw new Exception(s"Max retries limit reached - ${Thread.currentThread.getStackTrace}")
+      throw new Exception("Max retries limit reached - upsertAndGetStatus")
     }
     try {
       val newCounter = urlMap.compute(urlHash, (url: Int, counter: Int) => {
@@ -43,7 +43,7 @@ class UrlMap @Inject()(environmentService: EnvironmentService) {
 
   private def resetCounterAfterTtl(urlHash: Int, retries: Int): Unit = {
     if (retryLimit < retries) {
-      throw new Exception(s"Max retries limit reached - ${Thread.currentThread.getStackTrace}")
+      throw new Exception("Max retries limit reached - resetCounterAfterTtl")
     }
     Future{
       Thread.sleep(ttl)
@@ -55,7 +55,7 @@ class UrlMap @Inject()(environmentService: EnvironmentService) {
 
   private def resetCounter(urlHash: Int, retries: Int): Int = {
     if (retryLimit < retries) {
-      throw new Exception(s"Max retries limit reached - ${Thread.currentThread.getStackTrace}")
+      throw new Exception("Max retries limit reached - resetCounter")
     }
     try {
       urlMap.compute(urlHash, (url:Int, counter:Int) => {
