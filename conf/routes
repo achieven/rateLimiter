@@ -1,8 +1,3 @@
-
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
 POST     /report                           controllers.ReportController.report
 
 
